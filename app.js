@@ -39,8 +39,10 @@ require('./src/routes/tasksLists/findAllTasksLists')(app, TaskList, Task);
 require('./src/routes/tasksLists/findByPkTasksLists')(app, TaskList, Task);
 require('./src/routes/tasksLists/destroyTasksLists')(app, TaskList, Task);
 require('./src/routes/tasksLists/updateTasksLists')(app, TaskList);
-//path crud list
-require('./src/routes/task/addTask')(app, Task)
+//path crud tasks
+require('./src/routes/task/addTask')(app, Task);
+require('./src/routes/task/destroyTask')(app, Task);
+require('./src/routes/task/activeOrInactiveTask')(app, Task);
 //path for test auth and token (jwt)
 require('./src/routes/test')(app);
 
