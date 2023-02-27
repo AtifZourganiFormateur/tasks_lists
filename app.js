@@ -43,6 +43,7 @@ require('./src/routes/tasksLists/updateTasksLists')(app, TaskList);
 require('./src/routes/task/addTask')(app, Task);
 require('./src/routes/task/destroyTask')(app, Task);
 require('./src/routes/task/activeOrInactiveTask')(app, Task);
+require('./src/routes/task/findTaskByPk')(app, Task);
 //path for test auth and token (jwt)
 require('./src/routes/test')(app);
 
