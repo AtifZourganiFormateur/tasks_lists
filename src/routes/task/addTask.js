@@ -1,16 +1,16 @@
 module.exports = (app, Task) => {
     app.post('/taskslists/:id/tasks', (req,res) => {
         const id = parseInt(req.params.id);
-        const {name, description, amount} = req.body;
+        let {name, description, amount} = req.body;
         try{
             if(!name){
                 return res.status(400).json({message: 'Votre tâche necessite un nom'});
             }
-            if(!description){
+            if(description === ""){
                 description = 'Description non précisé';
             }
             if(!amount){
-                amount = 0;
+                return res.status(400).json({message: 'Votre tâche necessite une quantité'});
             }
             Task.create({
                 name,

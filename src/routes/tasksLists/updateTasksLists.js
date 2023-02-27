@@ -5,7 +5,7 @@ module.exports = (app, Taskslist) => {
         try{
             Taskslist.findByPk(id)
             .then(taskslist => {
-                if(taskslist === null){
+                if(!taskslist){
                     return res.status(404).json({message: 'cette liste de tache est introuvable'})
                 }
                 taskslist.update({title, description})
