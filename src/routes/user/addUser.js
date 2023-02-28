@@ -5,6 +5,8 @@ module.exports = (app, User) => {
         try{
             const password = req.body.password;
             const email = req.body.email;
+            const image = req.body.image;
+            const pseudo = req.body.pseudo;
             User.findOne({ where: { email } })
                 .then(element => {
                     if(element){
@@ -13,17 +15,19 @@ module.exports = (app, User) => {
                     bcrypt.hash(password, 10)
                     .then(hash => {
                         User.create({
-                            email: email,
-                            password: hash
+                            email,
+                            password: hash,
+                            image,
+                            pseudo
                         }).then(element => {
-                            res.json({message: `User ${email} ajouté avec succes`, data: element});
+                            res.json({message: `User ${pseudo} ajouté avec succes`, data: element});
                         })
                     })
                 });   
         }catch(error){
             res.status(500).json({
-                message: 'Une erreur s\'est produite lors de la création de l\'utilisateur'
+                error: 'Une erreur s\'est produite lors de la création de l\'utilisateur'
             });
         }
     })
-}
+} 

@@ -8,7 +8,7 @@ const User = require('./src/models/User');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+const allowedOrigins = ['*'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -26,7 +26,7 @@ app
     //helmet -> middleware pour aider a proteger contre les injections de script, les attaques XSS, les en-têtes HTTP malveillants, etc.
     .use(helmet())
     //delimite l'acces aux endpoints
-    .use(cors(corsOptions));
+    .use(cors());
 
 //path crud user
 require('./src/routes/user/addUser')(app, User);
