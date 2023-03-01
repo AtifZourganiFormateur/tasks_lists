@@ -18,7 +18,8 @@ module.exports = (app, User) => {
                             email,
                             password: hash,
                             image,
-                            pseudo
+                            pseudo,
+                            roleId : 1
                         }).then(element => {
                             res.json({message: `User ${pseudo} ajouté avec succes`, data: element});
                         })

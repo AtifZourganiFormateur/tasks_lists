@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../db/db');
-
+const TasksList = require('../models/TasksLists')
 
 const User = db.define('User', {
   id: {
@@ -32,5 +32,11 @@ const User = db.define('User', {
   createdAt: 'created',
   updatedAt: 'updated'
 });
-
+User.hasMany(TasksList, {
+  foreignKey: {
+      allowNull: false,
+      name: 'authorId'
+  },
+  sourceKey: 'id'
+})
 module.exports = User;

@@ -2,6 +2,7 @@ const auth = require('../../authentification/auth')
 
 module.exports = (app, TaskList) => {
     app.post('/taskslists',auth, (req,res) => {
+        const authorId = 3;
         try{
             const {title, description} = req.body;
             if (!title) {
@@ -10,7 +11,7 @@ module.exports = (app, TaskList) => {
             if (!description) {
                 return res.status(400).json({ message: 'la description est obligatoire' });
             }        
-            TaskList.create({title, description})
+            TaskList.create({title, description, authorId})
                 .then(newTaskList => {
                     //status 201 = created
                     res.status(201).json({message:`Votre liste de tache ${title} est bien ajouté`, data: newTaskList});
