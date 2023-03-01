@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, Task) => {
-    app.put('/tasks/:id', async (req,res) => {
+    app.put('/tasks/:id',auth, async (req,res) => {
         try{
             const id = parseInt(req.params.id);
             const taskToModify = await Task.findByPk(id);

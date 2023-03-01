@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, Taskslist, Task) => {
-    app.get('/taskslists/:id', (req,res)=>{
+    app.get('/taskslists/:id',auth, (req,res)=>{
         try{
             const id = req.params.id;
             Taskslist.findByPk(id, {

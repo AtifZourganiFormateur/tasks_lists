@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, TasksList, Task) => {
-    app.delete('/taskslists/:id', (req,res) => {
+    app.delete('/taskslists/:id', auth, (req,res) => {
         const id = req.params.id;
         try{
             TasksList.findByPk(id)

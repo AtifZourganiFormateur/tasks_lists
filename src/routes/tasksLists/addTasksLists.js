@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, TaskList) => {
-    app.post('/taskslists', (req,res) => {
+    app.post('/taskslists',auth, (req,res) => {
         try{
             const {title, description} = req.body;
             if (!title) {

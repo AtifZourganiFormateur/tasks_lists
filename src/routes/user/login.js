@@ -15,8 +15,10 @@ module.exports = (app, User) => {
         if (!isPasswordValid) {
           return res.status(401).json({ message: `Le mot de passe est incorrect pour l'utilisateur ${email}` });
         }
-        const token = jwt.sign({ userId: user.id }, privateKey, { expiresIn: '1h' });
-          return res.json({ message: 'User connecté avec succès', data: user, token });
+        //genere un nouveau token
+        const token = jwt.sign({ userId: user.id }, privateKey, { expiresIn: '10h' });
+        //res.cookie('token', token, {httpOnly:true, secure:true});
+        return res.json({ message: 'User connecté avec succès', data: user, token});
       } catch (error) {
           return res.status(500).json({message: "Désolé, une erreur interne du serveur est survenue. Veuillez réessayer plus tard ou contacter l'administrateur système si le problème persiste.", data: error})
       }

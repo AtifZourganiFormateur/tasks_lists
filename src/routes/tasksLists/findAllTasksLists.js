@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, TasksList, Task) => {
-    app.get('/taskslists', (req,res) => {
+    app.get('/taskslists',auth, (req,res) => {
         try{
             const taskslists = TasksList.findAll({
                 include: {

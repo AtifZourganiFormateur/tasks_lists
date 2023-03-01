@@ -1,5 +1,7 @@
+const auth = require('../../authentification/auth')
+
 module.exports = (app, Task) => {
-    app.put('/tasks/:id/active', async (req,res) => {
+    app.put('/tasks/:id/active',auth, async (req,res) => {
         const id = parseInt(req.params.id);
         try{
             const task = await Task.findByPk(id);

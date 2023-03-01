@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const Task = require('./src/models/Tasks');
 const TaskList = require('./src/models/TasksLists');
 const User = require('./src/models/User');
+const Role = require('./src/models/Role');
 const helmet = require('helmet');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const allowedOrigins = ['*'];
 const corsOptions = {
@@ -26,7 +28,9 @@ app
     //helmet -> middleware pour aider a proteger contre les injections de script, les attaques XSS, les en-têtes HTTP malveillants, etc.
     .use(helmet())
     //delimite l'acces aux endpoints
-    .use(cors());
+    .use(cors())
+    //permet a express de parser les cookies envoyé par le navigateur du user
+    .use(cookieParser());
 
 //path crud user
 require('./src/routes/user/addUser')(app, User);
